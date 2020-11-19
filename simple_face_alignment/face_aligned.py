@@ -34,7 +34,7 @@ def find_non_reflective_similarity(uv, xy, K=2):
 
     # We know that X * r = U
     if rank(X) >= 2 * K:
-        r, _, _, _ = lstsq(X, U)
+        r, _, _, _ = lstsq(X, U, rcond=None)
         r = np.squeeze(r)
     else:
         raise Exception('cp2tform:twoUniquePointsReq')
@@ -74,13 +74,14 @@ def _enlarge_bbox(bbox: typing.List[float], enlarge_rate: float, image_size: typ
 
 
 # noinspection SpellCheckingInspection
-def simple_aligned_face(img: np.ndarray, landmark: LANDMARK_TYPING, bbox: typing.List[float],
-                        align_method: int = ALIGN_METHOD_5POINT, enlarge_rate: float = 1
-                        ) -> np.ndarray:
+def align_face(img: np.ndarray, landmark: LANDMARK_TYPING, bbox: typing.List[float],
+               align_method: int = ALIGN_METHOD_5POINT, enlarge_rate: float = 1
+               ) -> np.ndarray:
     """
     return a aligned face
     :param img: original image, from cv2.imread
     :param landmark:  a list of tuple, 5 point landmark, tuple should be (width, height)
+                      landmark should be left eye, right eye, nose, mouse left, mouse right
     :param bbox:  a list of numbwe, shoule be  x, y, r, b (x1, y1, x2, y2)
     :param align_method:  align should be "3pointAffine" and "5pointAffine", default is 5pointAffine
     :param enlarge_rate:  enlarge rate for bbox
