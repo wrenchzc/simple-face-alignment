@@ -2,6 +2,19 @@
 a simple face alignment, standard face size is 96x112
 
 example
+example image is https://github.com/wrenchzc/simple-face-alignment/blob/main/tests/ty1.jpg
+
+before align
+![no align](https://raw.githubusercontent.com/wrenchzc/simple-face-alignment/main/tests/ty1_bbox.jpg)
+
+
+use 5 point affine
+![5 point align](https://raw.githubusercontent.com/wrenchzc/simple-face-alignment/main/tests/ty1_aligned_1.jpg "5 point affine")
+
+
+![3 point align](https://raw.githubusercontent.com/wrenchzc/simple-face-alignment/main/tests/ty1_aligned_3.jpg "3 point affine")
+
+
 
 
 INSTALLATION
