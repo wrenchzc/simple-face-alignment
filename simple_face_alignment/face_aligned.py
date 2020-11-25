@@ -85,7 +85,7 @@ def align_face(img: np.ndarray, landmark: LANDMARK_TYPING, bbox: typing.List[flo
     :param bbox:  a list of numbwe, shoule be  x, y, r, b (x1, y1, x2, y2)
     :param align_method:  align should be "3pointAffine" and "5pointAffine", default is 5pointAffine
     :param enlarge_rate:  enlarge rate for bbox
-    :return: aligned face, opencv format, standard size (96x112)
+    :return: aligned face, opencv format, standard size (112x112)
     """
 
     enlarged_bbox = _enlarge_bbox(bbox, enlarge_rate, img.shape[:2])
@@ -105,3 +105,26 @@ def align_face(img: np.ndarray, landmark: LANDMARK_TYPING, bbox: typing.List[flo
     max_standard_side = max(STANDARD_FACE_WH)
     aligned_face = cv2.warpAffine(crop_face_image.copy(), trans_matrix, (max_standard_side, max_standard_side))
     return aligned_face
+
+
+def align_faces(img: np.ndarray, face_infos: typing.List[typing.Dict],
+                align_method: int = ALIGN_METHOD_5POINT, enlarge_rate: float = 1
+                ) -> typing.List[np.ndarray]:
+    """
+    :param img: original image, from cv2.imread
+    :param align_method:
+    :param face_infos: a list of face info, face info should be a dict, have 2 keys, "landmark" and "bbox"
+           example:
+    :param align_method:  align should be "3pointAffine" and "5pointAffine", default is 5pointAffine
+    :param enlarge_rate:  enlarge rate for bbox
+    :return: list of aligned face, opencv format, standard size (112x112)
+    """
+
+    faces = []
+    for face_info in face_infos:
+        landmark = face_info["landmark"]
+        bbox = face_info["bbox"]
+        face = align_face(img, landmark, bbox, align_method, enlarge_rate)
+        faces.append(face)
+
+    return faces

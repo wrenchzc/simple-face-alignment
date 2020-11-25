@@ -1,11 +1,17 @@
+import sys
 import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+
+if sys.version_info < (3, 6, 0):
+    sys.exit('Python < 3.6.0 is not supported!')
+
+
 setuptools.setup(
-    name="simple face alignment",
-    version="0.0.1",
+    name="simple_face_alignment",
+    version="0.0.2",
     author="Zhang, Chi",
     author_email="wrench@outlook.com",
     description="a simple implmentation for face align",
@@ -26,7 +32,6 @@ setuptools.setup(
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',

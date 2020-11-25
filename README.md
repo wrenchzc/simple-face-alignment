@@ -23,24 +23,20 @@ use 3 point affine
 
 
 
-INSTALLATION
-############
+###INSTALLATION
 
 Currently it is only supported Python3.4 onwards. It can be installed through pip:
 
-.. code:: bash
 
     $ pip install simple-face-alignment
 
 This implementation requires OpenCV>=4.1 
 
-USAGE
-#####
+### USAGE
 
 The following example illustrates the ease of use of this package:
 
 
-.. code:: python
 
     >>> from simple_face_alignment import align_face, ALIGN_METHOD_3POINT
     >>>
@@ -53,12 +49,10 @@ The following example illustrates the ease of use of this package:
                     (643.1047439575195, 437.53148651123047)]
     >>> face_aligned = align_face(img, landmark, bbox)
 
-LICENSE
-#######
+### LICENSE
 
-`MIT License`_.
+`MIT License`
 
 
-REFERENCE
-=========
+### REFERENCE
 [从零开始搭建人脸识别系统（二）：人脸对齐](https://zhuanlan.zhihu.com/p/61343643)
